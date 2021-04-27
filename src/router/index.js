@@ -200,19 +200,19 @@ export const constantRoutes = [
       {
         path: 'fchannel',
         name: 'fchannel',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/form/pay'),
         meta: { title: '支付配置', icon: 'form' }
       },
       {
         path: 'adver',
         name: 'adver',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/form/gg'),
         meta: { title: '广告配置', icon: 'form' }
       },
       {
         path: 'rate',
         name: 'rate',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/form/wy'),
         meta: { title: '物业费率配置', icon: 'form' }
       }
     ]

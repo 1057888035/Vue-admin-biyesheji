@@ -51,7 +51,8 @@
         </template>
       </el-table-column>
 
-           <el-table-column align="center" prop="created_at" label="操作" width="100">
+
+           <el-table-column align="center" prop="created_at" label="操作" width="130">
         <template>
           <el-button type="primary" icon="el-icon-edit" circle></el-button>
            <el-button type="danger" icon="el-icon-delete" circle></el-button>
@@ -93,6 +94,7 @@ export default {
   },
   created() {
     this.fetchData()
+    
   },
   methods: {
     fetchData() {

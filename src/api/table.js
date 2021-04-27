@@ -2,8 +2,11 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/vue-admin-template/table/list',
+    url: '/user/staff/getAllStaff/1',
+    // url: '/config/rate/getAllRate',
     method: 'get',
     params
   })
 }
+
+
