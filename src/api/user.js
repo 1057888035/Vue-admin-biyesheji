@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/login/13321541234/123456',
+    url: '/login/'+data.username+'/'+data.password,
     method: 'get',
     data
   })
