@@ -122,10 +122,8 @@ export default {
 </script>
 
 <style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#19d49c;
+$bg:#949494;
 $light_gray:#fff;
 $cursor: #fff;
 
@@ -135,7 +133,7 @@ $cursor: #fff;
   }
 }
 
-/* reset element-ui css */
+
 .login-container {
   .el-input {
     display: inline-block;
