@@ -42,3 +42,13 @@ export function updateStaffById(params) {
     params
   })
 }
+
+
+
+
+export function getStaffByPhone(params) {
+  return request({
+    url: 'getStaffForPhone/'+params,
+    method: 'get'
+  })
+}

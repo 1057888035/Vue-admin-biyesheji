@@ -16,9 +16,9 @@ export function getInfo(token) {
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/loginout/13321541234',
+    url: '/loginout/'+token,
     method: 'get'
   })
 }

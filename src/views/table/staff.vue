@@ -1,6 +1,9 @@
 <template>
 <div class="app-container">
 
+
+  <el-input v-model="inputofPhone" placeholder="请输入要查询的手机号"  maxlength="11"  style="width:300px"></el-input>
+  <el-button type="primary" icon="el-icon-search" @click="searchStaff(inputofPhone)">搜索</el-button>
   <el-button  type="success" @click="addStaffForm()" icon="el-icon-edit" style="margin:2px">增加员工</el-button>
     <el-dialog
       :title="title"
@@ -89,7 +92,7 @@
         </el-form-item>
 
         <el-form-item label="员工类型" prop="sType">
-          <el-select v-model="addForm.sType" :placeholder="请选择" v-if="title == '增加员工'" >
+          <el-select v-model="addForm.sType" placeholder="请选择" v-if="title == '增加员工'" >
             <el-option
              v-for="item in options"
              :key="item.value"
@@ -117,8 +120,6 @@
 
     </el-dialog>
 
-
- 
   <el-table
     v-loading="listLoading"
     :data="list"
@@ -206,11 +207,8 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
-import { saveStaff } from '@/api/table'
-import { deleteStaffById } from '@/api/table'
-import { getDepartment } from '@/api/table'
-import { updateStaffById } from '@/api/table'
+import { getList, saveStaff ,deleteStaffById,getDepartment,updateStaffById ,getStaffByPhone} from '@/api/table'
+
 
 
 export default {
@@ -237,10 +235,9 @@ export default {
           sBirthday:"",
           sAddress:"",
           sType:"",
-          sId:"",
-
-
+          sId:""
       },
+      inputofPhone:"",
       title:"",
       dialogAddgsVisible: false,
       // 对话框显示与否
@@ -392,12 +389,12 @@ export default {
        },
 
       deleteStaff(staff){
-        this.$confirm('此操作将永久删除'+staff.sName+'用户, 是否继续?', '提示', {
+        this.$confirm('此操作将永久删除'+staff.sname+'用户, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-            deleteStaffById(staff.sId).then(response => {
+            deleteStaffById(staff.sid).then(response => {
             this.fetchData( this.pageModel.page)
             this.$message({
              type: 'success',
@@ -433,11 +430,26 @@ export default {
       getstypeName(stype){
         if(stype == 0){
           return "系统管理员";
-          }else if(stype == 1){
+         }else if(stype == 1){
             return "普通员工";
-          }else{
+           }else{
             return  "未知类型";
           }
+       },
+
+       /**
+        * 搜索功能
+        */
+      searchStaff(phone){
+        if(phone !=""){
+        this.listLoading = true
+        getStaffByPhone(phone).then(response => {
+          this.list = response.data.records
+          this.listLoading = false
+          this.pageModel.total = response.data.total
+          this.pageModel.page = response.data.current
+        })
+        }else{this.fetchData(1)}
       }
 
   }
